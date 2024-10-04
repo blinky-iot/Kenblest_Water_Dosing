@@ -14,7 +14,7 @@ void settingsMenu() {
 }
 
 void flowMeter1Read() {
-  if (millis() - lastFlowmeterRightFetch >= 500) {
+  if (millis() - lastFlowmeterRightFetch >= 150) {
     Get_Resource_Right(4112, 28);
     instanteneousTotal_flowmeterR = ReadArrayR[0];
     cumulativeTotal_flowmeterR = ReadArrayR[4] + ReadArrayR[5];

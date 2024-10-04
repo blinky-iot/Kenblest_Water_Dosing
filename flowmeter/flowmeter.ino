@@ -75,13 +75,13 @@ void loop() {
   if (millis() - LastUpdate >= 2000 && settingsMode == false) {
     LastUpdate = millis();
     if (newSettings) {
-      lcdRight.displayStatus(manualMode, meter1running, target, total, modbusOK,batchBuffer, false);
+      lcdRight.displayStatus(manualMode, meter1running, target, cumulativeTotal_flowmeterR, modbusOK,batchBuffer, false);
       newSettings = false;
     }
     if (manualMode) {
       lcdRight.manualDisplayStatus(manualMode, meter1running, cumulativeTotal_flowmeterR, modbusOK,batchBuffer);
     } else
-      lcdRight.displayStatus(manualMode, meter1running, target, total, modbusOK,batchBuffer);
+      lcdRight.displayStatus(manualMode, meter1running, target, cumulativeTotal_flowmeterR, modbusOK,batchBuffer);
   }
 }
 
@@ -120,7 +120,7 @@ void automaticModeOperation() {
 
     previousCumulativeTotalR = cumulativeTotal_flowmeterR;
     meter1running = true;
-    lcdRight.displayStatus(manualMode, meter1running, target, total, modbusOK,batchBuffer);
+    lcdRight.displayStatus(manualMode, meter1running, target, cumulativeTotal_flowmeterR, modbusOK,batchBuffer);
     startTap1();
     displayCumulativeTotalR = cumulativeTotal_flowmeterR;
     batchBuffer = 0.00;
@@ -186,6 +186,16 @@ void manualModeOperation() {
     }
   }
 }
+
+void pulsateValve(){
+  startTap1();
+  delay(2000);
+  stopTap1();
+  delay(4000);
+
+}
+
+
 
 
 
